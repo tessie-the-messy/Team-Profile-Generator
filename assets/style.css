@@ -1,0 +1,44 @@
+:root {
+    --color1: #edeae3 ;
+    --color2: #cfc5c3;
+    --color3: #e7d7c7;
+    --color4: #D4B2A7;
+    --color6: #6d5b52; 
+
+}
+
+/* html {
+} */
+
+body {
+    color: var(--color6);
+    background-color: var(--color3);
+    font-family: 'Short Stack', cursive;
+}
+
+header {
+    box-shadow: 0 0px 40px 0 var(--color6);
+}
+
+h1 {
+    background-color: var(--color2);
+    padding: 30px;
+}
+
+main {
+    margin: 100px;
+}
+
+.col {
+    padding: 10px;
+    margin: 10px;
+}
+
+.card {
+    background-color: var(--color4);
+    box-shadow: 0 0px 10px 0 var(--color6)
+}
+
+li {
+    background-color: var(--color1);
+}
