@@ -1,5 +1,5 @@
 :root {
-    --color1: #edeae3 ;
+    --color1: #ebe5dc;
     --color2: #cfc5c3;
     --color3: #e7d7c7;
     --color4: #D4B2A7;
@@ -36,9 +36,9 @@ main {
 
 .card {
     background-color: var(--color4);
-    box-shadow: 0 0px 10px 0 var(--color6)
+    box-shadow: 0 0px 10px 0 var(--color6);
+    margin: auto;
 }
 
-li {
-    background-color: var(--color1);
-}
+.list-group {
+    --bs-list-group-bg: var(--color1) ;}

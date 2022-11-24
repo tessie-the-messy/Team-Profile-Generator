@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const { Manager, Engineer, Intern } = require("./lib");
 
+//empty array to push each member to
 const team = [];
 
 // Array of questions for user input
@@ -10,22 +11,22 @@ const team = [];
 const managerQuestions = [
   {
     type: "input",
-    message: "name?",
+    message: "What is your name?",
     name: "name",
   },
   {
     type: "input",
-    message: "ID#",
+    message: "What is your ID?",
     name: "id",
   },
   {
     type: "input",
-    message: "e-mail?",
+    message: "What is your e-mail address?",
     name: "email",
   },
   {
     type: "input",
-    message: "office#?",
+    message: "What is your office number?",
     name: "office",
   },
 ];
@@ -33,22 +34,22 @@ const managerQuestions = [
 const engiQuestions = [
     {
         type: "input",
-        message: "name?",
+        message: "What is the employee's name?",
         name: "name",
       },
       {
         type: "input",
-        message: "ID#",
+        message: "What is the employee's ID?",
         name: "id",
       },
       {
         type: "input",
-        message: "e-mail?",
+        message: "What is the employee's e-mail?",
         name: "email",
       },
   {
     type: "input",
-    message: "github URL?",
+    message: "What is the employee's github URL?",
     name: "github",
   },
 ];
@@ -56,31 +57,43 @@ const engiQuestions = [
 const intQuestions = [
     {
         type: "input",
-        message: "name?",
+        message: "What is the employee's name?",
         name: "name",
       },
       {
         type: "input",
-        message: "ID#",
+        message: "What is the employee's ID?",
         name: "id",
       },
       {
         type: "input",
-        message: "e-mail?",
+        message: "What is the employee's e-mail?",
         name: "email",
       },
       {
         type: "input",
-        message: "school?",
+        message: "Where did this employee go to school?",
         name: "school"
       }
 ]
+
+inquirer.prompt(managerQuestions).then((answers) => {
+  let manager = new Manager(
+    answers.name,
+    answers.id,
+    answers.email,
+    answers.office
+  );
+  manager.special = "Office: "+ answers.office
+  team.push(manager);
+  addMore()
+});
 
 function addMore () {
     return inquirer.prompt([
         {
             type: "list",
-            message: "type?",
+            message: "Which type of employee would you like to add next? If you have completed your team, press done.",
             choices: ["Engineer", "Intern", "Done"],
             name: "employee",
         }
@@ -94,7 +107,7 @@ function addMore () {
             engiAnswers.email,
             engiAnswers.github
           );
-          engineer.special = engiAnswers.github
+          engineer.special = "Github: " + engiAnswers.github
           team.push(engineer);
           addMore()
         });
@@ -106,7 +119,7 @@ function addMore () {
             intAnswers.email,
             intAnswers.school
           );
-          intern.special = intAnswers.school
+          intern.special = "University: " + intAnswers.school
           team.push(intern);
           addMore()
         });
@@ -138,54 +151,37 @@ function addMore () {
             <div class="row">`
         );
         for (let i = 0; i < team.length; i++) {
-         fs.appendFileSync("team.html", `
-         ${team[i].name}
-         ${team[i].id}
-         ${team[i].email}
-         ${team[i].getRole()}
-         ${team[i].special}
-         `)
+            if (i === 3){
+                fs.appendFileSync("team.html", `
+                </div>
+                <div class = "row">
+                `)
+            }
+            fs.appendFileSync("team.html", `
+            <div class="col">
+            <div class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">♡ ${team[i].name} ♡</h5>
+                <h6 class="card-text">${team[i].getRole()}</h6>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${team[i].id}</li>
+                <li class="list-group-item">
+                  Email: <a href="mailto:${team[i].email}">${team[i].email}</a>
+                </li>
+                <li class="list-group-item">${team[i].special}</li>
+              </ul>
+            </div>
+          </div>
+            `)
             
         }
         fs.appendFileSync("team.html", `
+        </div>
+        </main>
         </body>
-    </html>
+      </html>      
         `)
       }
 })
-}
-
-inquirer.prompt(managerQuestions).then((answers) => {
-  let manager = new Manager(
-    answers.name,
-    answers.id,
-    answers.email,
-    answers.office
-  );
-  manager.special = answers.office
-  team.push(manager);
-  addMore()
-});
-
-// function to add information to HTML file
-
-// function writeFile(fileName, data) {
-//     fs.writeFile(fileName, data, (err) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         console.log("Employee added to system!");
-//       }
-//     });
-//   }
-
-// function to initialize app
-
-// function init() {
-//     inquirer.prompt(questions).then((response) => {
-//       const data = generateHTML(response);
-//       writeFile("./index.html", data);
-//     });
-//   }
-
-// init();
+};
