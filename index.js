@@ -93,7 +93,7 @@ function addMore () {
     return inquirer.prompt([
         {
             type: "list",
-            message: "Which type of employee would you like to add next? If you have completed your team, press done.",
+            message: "Which type of employee would you like to add next? If you have completed your team, choose 'Done' .",
             choices: ["Engineer", "Intern", "Done"],
             name: "employee",
         }
