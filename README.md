@@ -19,6 +19,10 @@ For use by managers to organize emails and other info of a team of interns and e
 Example of final product:
 ![example ss](./assets/images/team.png)
 
+Video walkthrough:
+[Untitled_ Nov 25, 2022 9_27 PM.webm](https://user-images.githubusercontent.com/115903135/204072830-f132168f-6b2c-42c1-bd8a-35d7034df559.webm)
+
+
 ## License: MIT license
 For more information visit https://opensource.org/licenses/MIT
     
