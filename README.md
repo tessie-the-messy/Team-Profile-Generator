@@ -2,7 +2,7 @@
   ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
   ## Description
-   ### A command line application that allows your to organize your work team.
+  A command line application that allows your to organize your work team.
     
   ## Table of Contents
   ### - [Installation](#installation)
